@@ -46,7 +46,7 @@ function startGL()
   let vertexPosition = [
     //3 punkty po 3 składowe - X1,Y1,Z1, X2,Y2,Z2, X3,Y3,Z3 - 1 trójkąt
 
-    //Front
+    //First
     -3.0, -2.0, +1.0,  -3.0, +2.0, +1.0,  -2.0, -2.0, +1.0,
 
     //Second
@@ -58,13 +58,19 @@ function startGL()
     //Forth
     -0.5, -2.0, +1.0,  +0.5, -2.0, +1.0,  -2.0, +0.5, +1.0,
 
+    //Fifth
+    -0.5, +1.0, +1.0,  -1.0, +2.0, +1.0,  -3.0, +2.0, +1.0,
+  
+    //Sixth
+    -0.5, +1.0, +1.0,  -1.0, +2.0, +1.0,  -3.0, -1.0, +1.0,
+
   ]
   
   let vertexPositionBuffer = gl.createBuffer(); //Stworzenie tablicy w pamieci karty graficznej
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexPositionBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPosition), gl.STATIC_DRAW);
   vertexPositionBuffer.itemSize = 3; //zdefiniowanie liczby współrzednych per wierzchołek
-  vertexPositionBuffer.numItems = 4; //Zdefinoiowanie liczby punktów w naszym buforze
+  vertexPositionBuffer.numItems = 6; //Zdefinoiowanie liczby punktów w naszym buforze
   
   //Macierze opisujące położenie wirtualnej kamery w przestrzenie 3D
   let aspect = gl.viewportWidth/gl.viewportHeight;
