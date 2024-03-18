@@ -68,8 +68,8 @@ function startGL()
     1.75, -1.5, 1.0,  2.0, 1.5, 1.0,  2.0, -1.5, 1.0,
 
     // bottom border
-    1.75, -1.5, 1.0,  -1.0, -1.5, 1.0,  -1., -1.25, 1.0,
-    1.75, -1.25, 1.0,  1.75, -1.5, 1.0,  -1.0, -1.25, 1.0,
+    1.75, -1.5, 1.0,  -1.25, -1.5, 1.0,  -1.25, -1.25, 1.0,
+    1.75, -1.25, 1.0,  1.75, -1.5, 1.0,  -1.25, -1.25, 1.0,
 
     // left wall
     -0.75, 0.5, 1.0,  -0.5, 0.5, 1.0,  -0.5, -1.5, 1.0,
@@ -82,17 +82,35 @@ function startGL()
     // next (to the right) wall
     0.25, 1.25, 1.0,  0.5, 1.25, 1.0,  0.5, -0.75, 1.0,
     0.5, -0.75, 1.0,  0.25, 1.25, 1.0,  0.25, -0.75, 1.0,
+
+    // second left wall
+    -1.5, 1.0, 1.0,  -1.25, 1.0, 1.0,  -1.5, -0.75, 1.0,
+    -1.5, -0.75, 1.0,  -1.25, 1.0, 1.0,  -1.25, -0.75, 1.0,
+
+    // bottom left wall
+    -1.75, 0.0, 1.0,  -1.5, 0.0, 1.0,  -1.5, -1.5, 1.0,
+    -1.5, -1.5, 1.0,  -1.75, 0.0, 1.0,  -1.75, -1.5, 1.0,
+
+    // right wall near door
+    -1.25, -1.0, 1.0,  -1.0, -1.0, 1.0,  -1.0, -1.5, 1.0,
+    -1.0, -1.5, 1.0,  -1.25, -1.0, 1.0,  -1.25, -1.5, 1.0,
   ]
   
   vertexPositionBuffer = gl.createBuffer(); //Stworzenie tablicy w pamieci karty graficznej
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexPositionBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPosition), gl.STATIC_DRAW);
   vertexPositionBuffer.itemSize = 3; //zdefiniowanie liczby współrzednych per wierzchołek
-  vertexPositionBuffer.numItems = 14; //Zdefinoiowanie liczby punktów w naszym buforze
+  vertexPositionBuffer.numItems = 20; //Zdefinoiowanie liczby punktów w naszym buforze
   
   //Opis sceny 3D, kolor każdego z wierzchołków
   let vertexColor = [
   //Front
+    0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
+    0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
+    0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
+    0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
+    0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
+    0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
     0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
     0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
     0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
@@ -113,7 +131,7 @@ function startGL()
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexColorBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexColor), gl.STATIC_DRAW);
   vertexColorBuffer.itemSize = 3;
-  vertexColorBuffer.numItems = 14;
+  vertexColorBuffer.numItems = 20;
   
   
   //Macierze opisujące położenie wirtualnej kamery w przestrzenie 3D
