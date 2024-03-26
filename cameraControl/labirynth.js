@@ -100,6 +100,9 @@ function startGL()
 
     +3.0, +1.0, -9.0,  +3.0, -1.0, -9.0,  +3.0, -1.0, -11.0,
     +3.0, +1.0, -9.0,  +3.0, -1.0, -11.0,  +3.0, +1.0, -11.0,
+
+    -5.0, -1.0, -9.0,  -5.0, +1.0, -9.0,  -5.0, -1.0, -10.0,
+    -5.0, -1.0, -10.0,  -5.0, +1.0, -9.0,  -5.0, +1.0, -10.0,
   //Right
     +1.0, +1.0, +1.0,  +1.0, -1.0, +1.0,  +1.0, -1.0, -1.0,
     +1.0, +1.0, +1.0,  +1.0, -1.0, -1.0,  +1.0, +1.0, -1.0,
@@ -149,8 +152,8 @@ function startGL()
     -5.0, -1.0, -7.0,  -5.0, +1.0, -7.0,  0.0, -1.0, -7.0,
     0.0, +1.0, -7.0,  0.0, -1.0, -7.0,  -5.0, +1.0, -7.0,
 
-    3.0, -1.0, -11.0,  3.0, +1.0, -11.0,  5.0, -1.0, -11.0,
-    5.0, +1.0, -11.0,  5.0, -1.0, -11.0,  3.0, +1.0, -11.0,
+    3.0, -1.0, -11.0,  3.0, +1.0, -11.0,  4.0, -1.0, -11.0,
+    4.0, +1.0, -11.0,  4.0, -1.0, -11.0,  3.0, +1.0, -11.0,
   //Bottom
     -1.0, -1.0, +1.0,  -1.0, -1.0, -1.0,  +1.0, -1.0, +1.0,
     +1.0, -1.0, +1.0,  -1.0, -1.0, -1.0,  +1.0, -1.0, -1.0
@@ -160,7 +163,7 @@ function startGL()
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexPositionBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexPosition), gl.STATIC_DRAW);
   vertexPositionBuffer.itemSize = 3; //zdefiniowanie liczby współrzednych per wierzchołek
-  vertexPositionBuffer.numItems = 48; //Zdefinoiowanie liczby punktów w naszym buforze
+  vertexPositionBuffer.numItems = 50; //Zdefinoiowanie liczby punktów w naszym buforze
   
   //Opis sceny 3D, kolor każdego z wierzchołków
   let vertexColor = [
@@ -168,6 +171,9 @@ function startGL()
     0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
     0.0, 1.0, 1.0,  0.0, 1.0, 1.0,  0.0, 1.0, 1.0,
   //Left
+    0.0, 0.0, 1.0,  0.0, 0.0, 1.0,  0.0, 0.0, 1.0,
+    0.0, 0.0, 1.0,  0.0, 0.0, 1.0,  0.0, 0.0, 1.0,
+
     0.0, 0.0, 1.0,  0.0, 0.0, 1.0,  0.0, 0.0, 1.0,
     0.0, 0.0, 1.0,  0.0, 0.0, 1.0,  0.0, 0.0, 1.0,
 
@@ -244,7 +250,7 @@ function startGL()
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexColorBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertexColor), gl.STATIC_DRAW);
   vertexColorBuffer.itemSize = 3;
-  vertexColorBuffer.numItems = 48;
+  vertexColorBuffer.numItems = 50;
   
   
   //Macierze opisujące położenie wirtualnej kamery w przestrzenie 3D
