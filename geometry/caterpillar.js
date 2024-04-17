@@ -411,6 +411,8 @@ var angleZ = 0.0;
 var angleY = 0.0;
 var angleX = 0.0;
 var tz = -8.0;
+//Do sterowania prawo-lewo
+var tx = 0.0;
 
 var lightX = 10;
 var lightY = 0;
@@ -509,6 +511,13 @@ function Tick()
   0,0,tz,1
   ];
 
+  let uMVTranslateX = [
+    1,0,0,0,
+    0,1,0,0,
+    0,0,1,0,
+    tx,0,0,1
+  ];
+
   let uMVScale = [
     scale,0,0,0,
     0,scale,0,0,
@@ -529,6 +538,8 @@ function Tick()
   uMVMatrix = MatrixMul(uMVMatrix,uMVRotY);
   uMVMatrix = MatrixMul(uMVMatrix,uMVRotZ);
   uMVMatrix = MatrixMul(uMVMatrix,uMVTranslateZ);
+  uMVMatrix = MatrixMul(uMVMatrix,uMVTranslateX);
+
   //alert(uPMatrix);
 
   // Macierze drugiej kuli
@@ -559,7 +570,7 @@ function Tick()
   uMVMatrix2 = MatrixMul(uMVMatrix2,uMVRotY);
   uMVMatrix2 = MatrixMul(uMVMatrix2,uMVRotZ);
   uMVMatrix2 = MatrixMul(uMVMatrix2,uMVTranslateZ);
-
+  uMVMatrix2 = MatrixMul(uMVMatrix2,uMVTranslateX);
   // Macierze trzeciej kuli
   let uMVMatrix3 = [
     1,0,0,0, //Macierz jednostkowa
@@ -588,7 +599,8 @@ function Tick()
   uMVMatrix3 = MatrixMul(uMVMatrix3,uMVRotY);
   uMVMatrix3 = MatrixMul(uMVMatrix3,uMVRotZ);
   uMVMatrix3 = MatrixMul(uMVMatrix3,uMVTranslateZ);
-  
+  uMVMatrix3 = MatrixMul(uMVMatrix3,uMVTranslateX);
+
   // Macierze 4 kuli
   let uMVMatrix4 = [
       1,0,0,0, //Macierz jednostkowa
@@ -617,6 +629,7 @@ function Tick()
   uMVMatrix4 = MatrixMul(uMVMatrix4,uMVRotY);
   uMVMatrix4 = MatrixMul(uMVMatrix4,uMVRotZ);
   uMVMatrix4 = MatrixMul(uMVMatrix4,uMVTranslateZ);
+  uMVMatrix4 = MatrixMul(uMVMatrix4,uMVTranslateX);
 
   // Macierze 5 kuli
   let uMVMatrix5 = [
@@ -646,6 +659,7 @@ function Tick()
   uMVMatrix5 = MatrixMul(uMVMatrix5,uMVRotY);
   uMVMatrix5 = MatrixMul(uMVMatrix5,uMVRotZ);
   uMVMatrix5 = MatrixMul(uMVMatrix5,uMVTranslateZ);
+  uMVMatrix5 = MatrixMul(uMVMatrix5,uMVTranslateX);
 
   // Macierze 6 kuli
   let uMVMatrix6 = [
@@ -675,6 +689,7 @@ function Tick()
   uMVMatrix6 = MatrixMul(uMVMatrix6,uMVRotY);
   uMVMatrix6 = MatrixMul(uMVMatrix6,uMVRotZ);
   uMVMatrix6 = MatrixMul(uMVMatrix6,uMVTranslateZ);
+  uMVMatrix6 = MatrixMul(uMVMatrix6,uMVTranslateX);
 
   // Macierze 7 kuli
   let uMVMatrix7 = [
@@ -704,6 +719,7 @@ function Tick()
   uMVMatrix7 = MatrixMul(uMVMatrix7,uMVRotY);
   uMVMatrix7 = MatrixMul(uMVMatrix7,uMVRotZ);
   uMVMatrix7 = MatrixMul(uMVMatrix7,uMVTranslateZ);
+  uMVMatrix7 = MatrixMul(uMVMatrix7,uMVTranslateX);
 
   // Macierze 8 kuli
   let uMVMatrix8 = [
@@ -733,6 +749,7 @@ function Tick()
   uMVMatrix8 = MatrixMul(uMVMatrix8,uMVRotY);
   uMVMatrix8 = MatrixMul(uMVMatrix8,uMVRotZ);
   uMVMatrix8 = MatrixMul(uMVMatrix8,uMVTranslateZ);
+  uMVMatrix8 = MatrixMul(uMVMatrix8,uMVTranslateX);
 
   //Render Scene
   gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight); 
@@ -827,4 +844,10 @@ function handlekeydown(e)
  if(e.keyCode==75) lightY=lightY-0.1;
  if(e.keyCode==85) lightZ=lightZ+0.1;
  if(e.keyCode==79) lightZ=lightZ-0.1;
+
+  //NOWE
+  if(e.keyCode==84) tz=tz-1.0;
+  if(e.keyCode==71) tz=tz+1.0;
+  if(e.keyCode==70) tx=tx+1.0;
+  if(e.keyCode==72) tx=tx-1.0;
 }

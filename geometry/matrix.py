@@ -31,6 +31,7 @@ uMVMatrix{num} = MatrixMul(uMVMatrix{num},uMVRotX);
 uMVMatrix{num} = MatrixMul(uMVMatrix{num},uMVRotY);
 uMVMatrix{num} = MatrixMul(uMVMatrix{num},uMVRotZ);
 uMVMatrix{num} = MatrixMul(uMVMatrix{num},uMVTranslateZ);
+uMVMatrix{num} = MatrixMul(uMVMatrix{num},uMVTranslateX);
     """)
 
 def generateBuffer(num) -> None:
