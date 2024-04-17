@@ -330,7 +330,68 @@ function startGL()
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   }
   textureImg3.src="assets/worm.jpg"; //Nazwa obrazka
+
+  //Buffer dla 4 kuli
+  textureBuffer4 = gl.createTexture();
+  var textureImg4 = new Image();
+  textureImg4.onload = function() { //Wykonanie kodu automatycznie po załadowaniu obrazka
+      gl.bindTexture(gl.TEXTURE_2D, textureBuffer4);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textureImg4); //Faktyczne załadowanie danych obrazu do pamieci karty graficznej
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); //Ustawienie parametrów próbkowania tekstury
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  }
+  textureImg4.src="assets/worm.jpg"; //Nazwa obrazka
   
+  //Buffer dla 5 kuli
+  textureBuffer5 = gl.createTexture();
+  var textureImg5 = new Image();
+  textureImg5.onload = function() { //Wykonanie kodu automatycznie po załadowaniu obrazka
+      gl.bindTexture(gl.TEXTURE_2D, textureBuffer5);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textureImg5); //Faktyczne załadowanie danych obrazu do pamieci karty graficznej
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); //Ustawienie parametrów próbkowania tekstury
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  }
+  textureImg5.src="assets/worm.jpg"; //Nazwa obrazka
+
+  //Buffer dla 6 kuli
+  textureBuffer6 = gl.createTexture();
+  var textureImg6 = new Image();
+  textureImg6.onload = function() { //Wykonanie kodu automatycznie po załadowaniu obrazka
+      gl.bindTexture(gl.TEXTURE_2D, textureBuffer6);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textureImg6); //Faktyczne załadowanie danych obrazu do pamieci karty graficznej
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); //Ustawienie parametrów próbkowania tekstury
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  }
+  textureImg6.src="assets/worm.jpg"; //Nazwa obrazka
+
+
+  //Buffer dla 7 kuli
+  textureBuffer7 = gl.createTexture();
+  var textureImg7 = new Image();
+  textureImg7.onload = function() { //Wykonanie kodu automatycznie po załadowaniu obrazka
+      gl.bindTexture(gl.TEXTURE_2D, textureBuffer7);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textureImg7); //Faktyczne załadowanie danych obrazu do pamieci karty graficznej
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); //Ustawienie parametrów próbkowania tekstury
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  }
+  textureImg7.src="assets/worm.jpg"; //Nazwa obrazka
+
+  //Buffer dla 8 kuli
+  textureBuffer8 = gl.createTexture();
+  var textureImg8 = new Image();
+  textureImg8.onload = function() { //Wykonanie kodu automatycznie po załadowaniu obrazka
+      gl.bindTexture(gl.TEXTURE_2D, textureBuffer8);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textureImg8); //Faktyczne załadowanie danych obrazu do pamieci karty graficznej
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); //Ustawienie parametrów próbkowania tekstury
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  }
+  textureImg8.src="assets/worm.jpg"; //Nazwa obrazka
+
   //Macierze opisujące położenie wirtualnej kamery w przestrzenie 3D
   let aspect = gl.viewportWidth/gl.viewportHeight;
   let fov = 45.0 * Math.PI / 180.0; //Określenie pola widzenia kamery
@@ -355,6 +416,7 @@ var lightX = 10;
 var lightY = 0;
 var lightZ = 0;
 
+// polozenie 1 kuli
 var objectx = -2.0;
 var objecty = 0.0;
 var objectz = -3.0;
@@ -362,8 +424,8 @@ var objectz = -3.0;
 var scale = 0.7;
 
 // polozenie drugiej kuli
-var object2x = -0.0;
-var object2y = 0.0;
+var object2x = 0.0;
+var object2y = 1.0;
 var object2z = -3.0;
 
 var scale2 = 0.6;
@@ -373,8 +435,42 @@ var object3x = 2.0;
 var object3y = 0.0;
 var object3z = -3.0;
 
-var scale3 = 0.6;
+var scale3 = 0.7;
 
+// polozenie 4 kuli
+var object4x = 4.0;
+var object4y = 1.0;
+var object4z = -3.0;
+
+var scale4 = 0.6;
+
+// polozenie 5 kuli
+var object5x = 6.0;
+var object5y = 0.0;
+var object5z = -3.0;
+
+var scale5 = 0.7;
+
+// polozenie 6 kuli
+var object6x = 8.0;
+var object6y = 1.0;
+var object6z = -3.0;
+
+var scale6 = 0.6;
+
+// polozenie 7 kuli
+var object7x = -4.0;
+var object7y = 1.0;
+var object7z = -3.0;
+
+var scale7 = 0.6;
+
+// polozenie 8 kuli
+var object8x = 10.0;
+var object8y = 0.0;
+var object8z = -3.0;
+
+var scale8 = 0.6;
 
 function Tick()
 {  
@@ -493,9 +589,154 @@ function Tick()
   uMVMatrix3 = MatrixMul(uMVMatrix3,uMVRotZ);
   uMVMatrix3 = MatrixMul(uMVMatrix3,uMVTranslateZ);
   
+  // Macierze 4 kuli
+  let uMVMatrix4 = [
+      1,0,0,0, //Macierz jednostkowa
+      0,1,0,0,
+      0,0,1,0,
+      0,0,0,1
+  ];
+
+  let uMVScale4 = [
+      scale4,0,0,0,
+      0,scale4,0,0,
+      0,0,scale4,0,
+      0,0,0,1
+  ];
+
+  let uMVObject4 = [
+      1,0,0,0,
+      0,1,0,0,
+      0,0,1,0,
+      object4x,object4y,object4z,1
+  ];
+
+  uMVMatrix4 = MatrixMul(uMVMatrix4,uMVScale4);
+  uMVMatrix4 = MatrixMul(uMVMatrix4,uMVObject4);
+  uMVMatrix4 = MatrixMul(uMVMatrix4,uMVRotX);
+  uMVMatrix4 = MatrixMul(uMVMatrix4,uMVRotY);
+  uMVMatrix4 = MatrixMul(uMVMatrix4,uMVRotZ);
+  uMVMatrix4 = MatrixMul(uMVMatrix4,uMVTranslateZ);
+
+  // Macierze 5 kuli
+  let uMVMatrix5 = [
+    1,0,0,0, //Macierz jednostkowa
+    0,1,0,0,
+    0,0,1,0,
+    0,0,0,1
+  ];
+
+  let uMVScale5 = [
+      scale5,0,0,0,
+      0,scale5,0,0,
+      0,0,scale5,0,
+      0,0,0,1
+  ];
+
+  let uMVObject5 = [
+      1,0,0,0,
+      0,1,0,0,
+      0,0,1,0,
+      object5x,object5y,object5z,1
+  ];
+
+  uMVMatrix5 = MatrixMul(uMVMatrix5,uMVScale5);
+  uMVMatrix5 = MatrixMul(uMVMatrix5,uMVObject5);
+  uMVMatrix5 = MatrixMul(uMVMatrix5,uMVRotX);
+  uMVMatrix5 = MatrixMul(uMVMatrix5,uMVRotY);
+  uMVMatrix5 = MatrixMul(uMVMatrix5,uMVRotZ);
+  uMVMatrix5 = MatrixMul(uMVMatrix5,uMVTranslateZ);
+
+  // Macierze 6 kuli
+  let uMVMatrix6 = [
+      1,0,0,0, //Macierz jednostkowa
+      0,1,0,0,
+      0,0,1,0,
+      0,0,0,1
+  ];
+
+  let uMVScale6 = [
+      scale6,0,0,0,
+      0,scale6,0,0,
+      0,0,scale6,0,
+      0,0,0,1
+  ];
+
+  let uMVObject6 = [
+      1,0,0,0,
+      0,1,0,0,
+      0,0,1,0,
+      object6x,object6y,object6z,1
+  ];
+
+  uMVMatrix6 = MatrixMul(uMVMatrix6,uMVScale6);
+  uMVMatrix6 = MatrixMul(uMVMatrix6,uMVObject6);
+  uMVMatrix6 = MatrixMul(uMVMatrix6,uMVRotX);
+  uMVMatrix6 = MatrixMul(uMVMatrix6,uMVRotY);
+  uMVMatrix6 = MatrixMul(uMVMatrix6,uMVRotZ);
+  uMVMatrix6 = MatrixMul(uMVMatrix6,uMVTranslateZ);
+
+  // Macierze 7 kuli
+  let uMVMatrix7 = [
+    1,0,0,0, //Macierz jednostkowa
+    0,1,0,0,
+    0,0,1,0,
+    0,0,0,1
+  ];
+
+  let uMVScale7 = [
+    scale7,0,0,0,
+    0,scale7,0,0,
+    0,0,scale7,0,
+    0,0,0,1
+  ];
+
+  let uMVObject7 = [
+    1,0,0,0,
+    0,1,0,0,
+    0,0,1,0,
+    object7x,object7y,object7z,1
+  ];
+
+  uMVMatrix7 = MatrixMul(uMVMatrix7,uMVScale7);
+  uMVMatrix7 = MatrixMul(uMVMatrix7,uMVObject7);
+  uMVMatrix7 = MatrixMul(uMVMatrix7,uMVRotX);
+  uMVMatrix7 = MatrixMul(uMVMatrix7,uMVRotY);
+  uMVMatrix7 = MatrixMul(uMVMatrix7,uMVRotZ);
+  uMVMatrix7 = MatrixMul(uMVMatrix7,uMVTranslateZ);
+
+  // Macierze 8 kuli
+  let uMVMatrix8 = [
+    1,0,0,0, //Macierz jednostkowa
+    0,1,0,0,
+    0,0,1,0,
+    0,0,0,1
+  ];
+
+  let uMVScale8 = [
+    scale8,0,0,0,
+    0,scale8,0,0,
+    0,0,scale8,0,
+    0,0,0,1
+  ];
+
+  let uMVObject8 = [
+    1,0,0,0,
+    0,1,0,0,
+    0,0,1,0,
+    object8x,object8y,object8z,1
+  ];
+
+  uMVMatrix8 = MatrixMul(uMVMatrix8,uMVScale8);
+  uMVMatrix8 = MatrixMul(uMVMatrix8,uMVObject8);
+  uMVMatrix8 = MatrixMul(uMVMatrix8,uMVRotX);
+  uMVMatrix8 = MatrixMul(uMVMatrix8,uMVRotY);
+  uMVMatrix8 = MatrixMul(uMVMatrix8,uMVRotZ);
+  uMVMatrix8 = MatrixMul(uMVMatrix8,uMVTranslateZ);
+
   //Render Scene
   gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight); 
-  gl.clearColor(1.0,0.0,0.0,1.0); //Wyczyszczenie obrazu kolorem czerwonym
+  gl.clearColor(0.0,1.0,0.1,0.3); //Wyczyszczenie obrazu kolorem czerwonym
   gl.clearDepth(1.0);             //Wyczyścienie bufora głebi najdalszym planem
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.useProgram(shaderProgram)   //Użycie przygotowanego programu shaderowego
@@ -539,7 +780,32 @@ function Tick()
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMVMatrix"), false, new Float32Array(uMVMatrix3));
   gl.bindTexture(gl.TEXTURE_2D, textureBuffer3);
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
+
+  //Renderowanie 4 kuli
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMVMatrix"), false, new Float32Array(uMVMatrix4));
+  gl.bindTexture(gl.TEXTURE_2D, textureBuffer4);
+  gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
    
+  //Renderowanie 5 kuli
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMVMatrix"), false, new Float32Array(uMVMatrix5));
+  gl.bindTexture(gl.TEXTURE_2D, textureBuffer5);
+  gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
+
+  //Renderowanie 6 kuli
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMVMatrix"), false, new Float32Array(uMVMatrix6));
+  gl.bindTexture(gl.TEXTURE_2D, textureBuffer6);
+  gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
+
+  //Renderowanie 7 kuli
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMVMatrix"), false, new Float32Array(uMVMatrix7));
+  gl.bindTexture(gl.TEXTURE_2D, textureBuffer7);
+  gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
+
+  //Renderowanie 8 kuli
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMVMatrix"), false, new Float32Array(uMVMatrix8));
+  gl.bindTexture(gl.TEXTURE_2D, textureBuffer8);
+  gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
+
   setTimeout(Tick,100);
 }
 function handlekeydown(e)
