@@ -304,7 +304,7 @@ function startGL()
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   }
-  textureImg.src="assets/worm.jpg"; //Nazwa obrazka
+  textureImg.src="assets/gr.jpg"; //Nazwa obrazka
 
   //Buffer dla drugiej kuli
 
@@ -341,7 +341,7 @@ function startGL()
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   }
-  textureImg4.src="assets/worm.jpg"; //Nazwa obrazka
+  textureImg4.src="assets/gr.jpg"; //Nazwa obrazka
   
   //Buffer dla 5 kuli
   textureBuffer5 = gl.createTexture();
@@ -365,7 +365,7 @@ function startGL()
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   }
-  textureImg6.src="assets/worm.jpg"; //Nazwa obrazka
+  textureImg6.src="assets/gr.jpg"; //Nazwa obrazka
 
 
   //Buffer dla 7 kuli
