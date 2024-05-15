@@ -309,6 +309,21 @@ var Object3PositionZ = 0.0;
 
 var Object3AngleZ = 0.0;
 
+//added
+var Object4PositionX = 0.0;
+var Object4PositionY = 0.0;
+var Object4PositionZ = 0.0;
+
+var Object4AngleZ = 0.0;
+
+//added
+var Object5PositionX = -1.0;
+var Object5PositionY = 0.0;
+var Object5PositionZ = 0.0;
+
+var Object5AngleZ = 0.0;
+
+
 var LightSize = 0.1;
 var Object1Sizedx = 1.0;
 var Object1Sizedy = 0.2;
@@ -325,12 +340,29 @@ var LightPositionY = 0;
 var LightPositionZ = 3;
 
 
+//added - BODY
+var Object4Sizedx = 1.0;
+var Object4Sizedy = 1.5;
+var Object4Sizedz = 0.8;
+
+//added - HEAD
+var Object5Sizedx = 1.4;
+var Object5Sizedy = 0.7;
+var Object5Sizedz = 0.8;
+
+
 function Tick()
 { 
   let uMMatrix0 = CreateIdentytyMatrix(); 
   let uMMatrix1 = CreateIdentytyMatrix();
   let uMMatrix2 = CreateIdentytyMatrix();
   let uMMatrix3 = CreateIdentytyMatrix();
+
+  //added
+  let uMMatrix4 = CreateIdentytyMatrix();
+
+  //added
+  let uMMatrix5 = CreateIdentytyMatrix();
   
   let uVMatrix = CreateIdentytyMatrix();
   
@@ -371,7 +403,19 @@ function Tick()
   uMMatrix0 = MatrixMul(uMMatrix0,CreateTranslationMatrix(LightPositionX,LightPositionY,LightPositionZ));
   
   //alert(uPMatrix);
+
+  //added - BODY
+  uMMatrix4 = MatrixMul(uMMatrix4,CreateScaleMatrix(Object4Sizedx,Object4Sizedy,Object4Sizedz));
+  uMMatrix4 = MatrixMul(uMMatrix4,CreateTranslationMatrix(-1.0,-1.0,0.0)); 
+  uMMatrix4 = MatrixMul(uMMatrix4,CreateRotationZMatrix(Object4AngleZ));
+  uMMatrix4 = MatrixMul(uMMatrix4,CreateTranslationMatrix(Object4PositionX,Object4PositionY,Object4PositionZ));
   
+  //added - HEAD
+  uMMatrix5 = MatrixMul(uMMatrix5,CreateScaleMatrix(Object5Sizedx,Object5Sizedy,Object5Sizedz));
+  uMMatrix5 = MatrixMul(uMMatrix5,CreateTranslationMatrix(0.0,1.0,0.0)); 
+  uMMatrix5 = MatrixMul(uMMatrix5,CreateRotationZMatrix(Object5AngleZ));
+  uMMatrix5 = MatrixMul(uMMatrix5,CreateTranslationMatrix(Object5PositionX,Object5PositionY,Object5PositionZ));
+
   //Render Scene
   gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight); 
   gl.clearColor(1.0,0.0,0.0,1.0); //Wyczyszczenie obrazu kolorem czerwonym
@@ -423,6 +467,18 @@ function Tick()
   gl.uniform1f(gl.getUniformLocation(shaderProgram, "uNormalMul"),-1.0);  
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
   
+  //added - HEAD
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix4));
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix4)));
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,0.0,1.0);
+  gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
+
+  //added - BODY
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix5));
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix5)));
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,0.0,1.0);
+  gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
+
   setTimeout(Tick,100);
 }
 function handlekeydown(e)
