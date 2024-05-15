@@ -297,13 +297,13 @@ var Object1PositionZ = 0.0;
 
 var Object1AngleZ = 0.0;
 
-var Object2PositionX = 1.0;
+var Object2PositionX = 0.3;
 var Object2PositionY = 0.0;
 var Object2PositionZ = 0.0;
 
 var Object2AngleZ = 0.0;
 
-var Object3PositionX = 1.0;
+var Object3PositionX = 0.6;
 var Object3PositionY = 0.0;
 var Object3PositionZ = 0.0;
 
@@ -323,12 +323,31 @@ var Object5PositionZ = 0.0;
 
 var Object5AngleZ = 0.0;
 
+//added positions
+var Object6PositionX = -2.6;
+var Object6PositionY = 0.0;
+var Object6PositionZ = 0.0;
+
+var Object6AngleZ = 0.0;
+
+var Object7PositionX = -1.5;
+var Object7PositionY = 0.0;
+var Object7PositionZ = 0.0;
+
+var Object7AngleZ = 0.0;
+
+var Object8PositionX = -1.4;
+var Object8PositionY = 0.0;
+var Object8PositionZ = 0.0;
+
+var Object8AngleZ = 0.0;
+
 
 var LightSize = 0.1;
-var Object1Sizedx = 1.0;
+var Object1Sizedx = 0.3;
 var Object1Sizedy = 0.2;
 var Object1Sizedz = 0.1;
-var Object2Sizedx = 1.0;
+var Object2Sizedx = 0.6;
 var Object2Sizedy = 0.2;
 var Object2Sizedz = 0.1;
 var Object3Sizedx = 0.4;
@@ -350,6 +369,17 @@ var Object5Sizedx = 1.4;
 var Object5Sizedy = 0.7;
 var Object5Sizedz = 0.8;
 
+//added - second arm
+var Object6Sizedx = 0.3;
+var Object6Sizedy = 0.2;
+var Object6Sizedz = 0.1;
+var Object7Sizedx = 0.6;
+var Object7Sizedy = 0.2;
+var Object7Sizedz = 0.1;
+var Object8Sizedx = 0.4;
+var Object8Sizedy = 0.2;
+var Object8Sizedz = 0.1;
+
 
 function Tick()
 { 
@@ -366,6 +396,10 @@ function Tick()
   
   let uVMatrix = CreateIdentytyMatrix();
   
+  //added - second arm
+  let uMMatrix6 = CreateIdentytyMatrix();
+  let uMMatrix7 = CreateIdentytyMatrix();
+  let uMMatrix8 = CreateIdentytyMatrix();
   
   uVMatrix = MatrixMul(uVMatrix,CreateRotationXMatrix(angleX));
   uVMatrix = MatrixMul(uVMatrix,CreateRotationYMatrix(angleY));
@@ -416,6 +450,34 @@ function Tick()
   uMMatrix5 = MatrixMul(uMMatrix5,CreateRotationZMatrix(Object5AngleZ));
   uMMatrix5 = MatrixMul(uMMatrix5,CreateTranslationMatrix(Object5PositionX,Object5PositionY,Object5PositionZ));
 
+  //added - second arm
+  uMMatrix6 = MatrixMul(uMMatrix6,CreateScaleMatrix(Object6Sizedx,Object6Sizedy,Object6Sizedz));
+  uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object6Sizedx,0.0,0.0)); 
+  uMMatrix6 = MatrixMul(uMMatrix6,CreateRotationZMatrix(Object6AngleZ));
+  uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object6PositionX,Object6PositionY,Object6PositionZ));  
+  
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateScaleMatrix(Object7Sizedx,Object7Sizedy,Object7Sizedz));
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object7Sizedx,0.0,0.0)); 
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationZMatrix(Object7AngleZ));
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object7PositionX,Object7PositionY,Object7PositionZ));
+  
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object6Sizedx,0.0,0.0)); 
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationZMatrix(Object6AngleZ));
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object6PositionX,Object6PositionY,Object6PositionZ));
+  
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateScaleMatrix(Object8Sizedx,Object8Sizedy,Object8Sizedz));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object8Sizedx,0.0,0.0)); 
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object8AngleZ));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object8PositionX,Object8PositionY,Object8PositionZ));
+  
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object7Sizedx,0.0,0.0)); 
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object7AngleZ));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object7PositionX,Object7PositionY,Object7PositionZ));
+  
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object6Sizedx,0.0,0.0)); 
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object6AngleZ));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object6PositionX,Object6PositionY,Object6PositionZ));
+
   //Render Scene
   gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight); 
   gl.clearColor(1.0,0.0,0.0,1.0); //Wyczyszczenie obrazu kolorem czerwonym
@@ -430,7 +492,7 @@ function Tick()
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uVMatrix"), false, new Float32Array(uVMatrix));
   gl.uniform1f(gl.getUniformLocation(shaderProgram, "uNormalMul"),1.0);
   
-  
+  //Pierwszy Obiekt
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix1));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix1)));
   
@@ -476,6 +538,43 @@ function Tick()
   //added - BODY
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix5));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix5)));
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,0.0,1.0);
+  gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
+
+
+
+
+  //added- second arm
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uPMatrix"), false, new Float32Array(uPMatrix)); //Wgranie macierzy kamery do pamięci karty graficznej
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uVMatrix"), false, new Float32Array(uVMatrix));
+  gl.uniform1f(gl.getUniformLocation(shaderProgram, "uNormalMul"),1.0);
+  
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix6));
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix6)));
+  
+  gl.enableVertexAttribArray(gl.getAttribLocation(shaderProgram, "aVertexPosition"));  //Przekazanie położenia
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexPositionBuffer);
+  gl.vertexAttribPointer(gl.getAttribLocation(shaderProgram, "aVertexPosition"), vertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
+  
+  gl.enableVertexAttribArray(gl.getAttribLocation(shaderProgram, "aVertexNormal"));  //Przekazywanie wektorów normalnych
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexNormalBuffer);
+  gl.vertexAttribPointer(gl.getAttribLocation(shaderProgram, "aVertexNormal"), vertexNormalBuffer.itemSize, gl.FLOAT, false, 0, 0);
+  
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uLightPosition"),LightPositionX,LightPositionY,LightPositionZ);
+  
+
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.5,0.0,0.0); 
+  gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
+
+  //Drugi Obiekt
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix7));
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix7)));
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,1.0,0.0);
+  gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
+  
+  //Trzeci Obiekt
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix8));
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix8)));
   gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,0.0,1.0);
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
 
