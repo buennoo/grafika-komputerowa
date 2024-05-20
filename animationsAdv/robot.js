@@ -296,12 +296,16 @@ var Object1PositionY = 0.0;
 var Object1PositionZ = 0.0;
 
 var Object1AngleZ = 0.0;
+var Object1AngleX = 0.0;
+var Object1AngleY = 0.0;
 
 var Object2PositionX = 0.3;
 var Object2PositionY = 0.0;
 var Object2PositionZ = 0.0;
 
 var Object2AngleZ = 0.0;
+var Object2AngleX = 0.0;
+var Object2AngleY = 0.0;
 
 var Object3PositionX = 0.6;
 var Object3PositionY = 0.0;
@@ -318,6 +322,8 @@ var Object4PositionY = 0.0;
 var Object4PositionZ = 0.0;
 
 var Object4AngleZ = 0.0;
+var Object4AngleX = 0.0;
+var Object4AngleY = 0.0;
 
 //added
 var Object5PositionX = -1.0;
@@ -325,6 +331,8 @@ var Object5PositionY = 0.0;
 var Object5PositionZ = 0.0;
 
 var Object5AngleZ = 0.0;
+var Object5AngleX = 0.0;
+var Object5AngleY = 0.0;
 
 //added positions
 var Object6PositionX = -2.6;
@@ -332,18 +340,24 @@ var Object6PositionY = 0.0;
 var Object6PositionZ = 0.0;
 
 var Object6AngleZ = 0.0;
+var Object6AngleX = 0.0;
+var Object6AngleY = 0.0;
 
 var Object7PositionX = -1.5;
 var Object7PositionY = 0.0;
 var Object7PositionZ = 0.0;
 
 var Object7AngleZ = 0.0;
+var Object7AngleX = 0.0;
+var Object7AngleY = 0.0;
 
 var Object8PositionX = -1.4;
 var Object8PositionY = 0.0;
 var Object8PositionZ = 0.0;
 
 var Object8AngleZ = 0.0;
+var Object8AngleX = 0.0;
+var Object8AngleY = 0.0;
 
 // added left leg
 var Object9PositionX = -0.7;
@@ -368,12 +382,16 @@ var Object11PositionY = -3.0;
 var Object11PositionZ = 0.0;
 
 var Object11AngleZ = 0.0;
+var Object11AngleX = 0.0;
+var Object11AngleY = 0.0;
 
 var Object12PositionX = -0.3;
 var Object12PositionY = -1.2;
 var Object12PositionZ = 0.0;
 
 var Object12AngleZ = 0.0;
+var Object12AngleX = 0.0;
+var Object12AngleY = 0.0;
 
 
 var LightSize = 0.1;
@@ -564,16 +582,16 @@ function Tick()
   // right leg
   uMMatrix11 = MatrixMul(uMMatrix11,CreateScaleMatrix(Object11Sizedx,Object11Sizedy,Object11Sizedz));
   uMMatrix11 = MatrixMul(uMMatrix11,CreateTranslationMatrix(Object11Sizedx,0.0,0.0)); 
-  uMMatrix11 = MatrixMul(uMMatrix11,CreateRotationZMatrix(Object11AngleZ));
+  uMMatrix11 = MatrixMul(uMMatrix11,CreateRotationXMatrix(Object11AngleX));
   uMMatrix11 = MatrixMul(uMMatrix11,CreateTranslationMatrix(Object11PositionX,Object11PositionY,Object11PositionZ));  
   
   uMMatrix12 = MatrixMul(uMMatrix12,CreateScaleMatrix(Object12Sizedx,Object12Sizedy,Object12Sizedz));
   uMMatrix12 = MatrixMul(uMMatrix12,CreateTranslationMatrix(Object12Sizedx,0.0,0.0)); 
-  uMMatrix12 = MatrixMul(uMMatrix12,CreateRotationZMatrix(Object12AngleZ));
+  uMMatrix12 = MatrixMul(uMMatrix12,CreateRotationXMatrix(Object12AngleX));
   uMMatrix12 = MatrixMul(uMMatrix12,CreateTranslationMatrix(Object12PositionX,Object12PositionY,Object12PositionZ));
   
   uMMatrix12 = MatrixMul(uMMatrix12,CreateTranslationMatrix(Object11Sizedx,0.0,0.0)); 
-  uMMatrix12 = MatrixMul(uMMatrix12,CreateRotationZMatrix(Object11AngleZ));
+  uMMatrix12 = MatrixMul(uMMatrix12,CreateRotationXMatrix(Object11AngleX));
   uMMatrix12 = MatrixMul(uMMatrix12,CreateTranslationMatrix(Object11PositionX,Object11PositionY,Object11PositionZ));
 
   //Render Scene
@@ -750,10 +768,30 @@ function handlekeydown(e)
  if(e.keyCode==88) Object9AngleX=Object9AngleX-1.5;
  if(e.keyCode==90) Object9AngleX=Object9AngleX+1.5;
 
- // left leg
-//  if(e.keyCode==88) Object11AngleZ=Object11AngleZ-1.5;
-//  if(e.keyCode==90) Object11AngleZ=Object11AngleZ+1.5;
+  if(Object10AngleX < 12) {
+    if(e.keyCode==88) Object10AngleX=Object10AngleX+0.5;
+  }
 
+  if(Object10AngleX > 0) {
+    if(e.keyCode==90) Object10AngleX=Object10AngleX-0.5;
+  }
+
+//  console.log(Object10AngleX);
+
+
+ // left leg
+ if(e.keyCode==88) Object11AngleX=Object11AngleX+1.5;
+ if(e.keyCode==90) Object11AngleX=Object11AngleX-1.5;
+
+  if(Object12AngleX < 12) {
+    if(e.keyCode==90) Object12AngleX=Object12AngleX+0.5;
+  }
+
+  if(Object12AngleX > 0) {
+    if(e.keyCode==88) Object12AngleX=Object12AngleX-0.5;
+  }
+
+console.log(Object10AngleX);
  
  //C V
  if(e.keyCode==67) Object2AngleZ=Object2AngleZ-1.5;
