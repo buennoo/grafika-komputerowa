@@ -327,7 +327,7 @@ var Object4AngleY = 0.0;
 
 //added head
 var Object5PositionX = -1.0;
-var Object5PositionY = 0.0;
+var Object5PositionY = 0.2;
 var Object5PositionZ = 0.0;
 
 var Object5AngleZ = 0.0;
@@ -535,8 +535,6 @@ function Tick()
   uMMatrix5 = MatrixMul(uMMatrix5,CreateTranslationMatrix(Object5PositionX,Object5PositionY,Object5PositionZ));
 
   //added - second arm
-
-  // oddalenie
   uVMatrix = MatrixMul(uVMatrix,CreateRotationXMatrix(angleX));
   uVMatrix = MatrixMul(uVMatrix,CreateRotationYMatrix(angleY));
   uVMatrix = MatrixMul(uVMatrix,CreateRotationZMatrix(angleZ));
@@ -545,7 +543,6 @@ function Tick()
   uMMatrix6 = MatrixMul(uMMatrix6,CreateScaleMatrix(Object6Sizedx,Object6Sizedy,Object6Sizedz));
   uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object6Sizedx,0.0,0.0)); 
   uMMatrix6 = MatrixMul(uMMatrix6,CreateRotationZMatrix(Object6AngleZ));
-  uMMatrix6 = MatrixMul(uMMatrix6,CreateRotationXMatrix(Object6AngleX));
   uMMatrix6 = MatrixMul(uMMatrix6,CreateRotationYMatrix(Object6AngleY));
   uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object6PositionX,Object6PositionY,Object6PositionZ));  
   
@@ -557,7 +554,6 @@ function Tick()
   
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object6Sizedx,0.0,0.0)); 
   uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationZMatrix(Object6AngleZ));
-  uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationXMatrix(Object6AngleX));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationYMatrix(Object6AngleY));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object6PositionX,Object6PositionY,Object6PositionZ));
   
@@ -610,7 +606,7 @@ function Tick()
 
   //Render Scene
   gl.viewport(0, 0, gl.viewportWidth, gl.viewportHeight); 
-  gl.clearColor(1.0,0.0,0.0,1.0); //Wyczyszczenie obrazu kolorem czerwonym
+  gl.clearColor(0.0,0.0,1.0,0.3); // Cornflower blue color
   gl.clearDepth(1.0);             //Wyczyścienie bufora głebi najdalszym planem
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.useProgram(shaderProgram)   //Użycie przygotowanego programu shaderowego
@@ -637,19 +633,19 @@ function Tick()
   gl.uniform3f(gl.getUniformLocation(shaderProgram, "uLightPosition"),LightPositionX,LightPositionY,LightPositionZ);
   
 
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.5,0.0,0.0); 
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),1.0,0.8,1.0); 
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
   
   //Drugi Obiekt
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix2));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix2)));
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,1.0,0.0);
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.5,0.8,0.0);
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
   
   //Trzeci Obiekt
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix3));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix3)));
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,0.0,1.0);
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),1.0,1.0,0.3);
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
   
   //Obiekt Światła
@@ -660,15 +656,20 @@ function Tick()
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
   
   //added - HEAD
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uPMatrix"), false, new Float32Array(uPMatrix)); //Wgranie macierzy kamery do pamięci karty graficznej
+  gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uVMatrix"), false, new Float32Array(uVMatrix));
+  gl.uniform1f(gl.getUniformLocation(shaderProgram, "uNormalMul"),1.0);
+  
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix4));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix4)));
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,0.0,1.0);
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),1.0,0.0,0.8);
+
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
 
   //added - BODY
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix5));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix5)));
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,1.0,1.0);
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,0.6,1.0);
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
 
 
@@ -780,21 +781,21 @@ function handlekeydown(e)
  if(e.keyCode==88) Object1AngleY=Object1AngleY-1.5;
  if(e.keyCode==90) Object1AngleY=Object1AngleY+1.5;
 
-  if(Object2AngleY > -20) {
+  if(Object2AngleY >= -20) {
     if(e.keyCode==88) Object2AngleY=Object2AngleY-3.5;
   }
 
-  if(Object2AngleY < 0) {
+  if(Object2AngleY <= 0) {
     if(e.keyCode==90) Object2AngleY=Object2AngleY+3.5;
   }
 
-  console.log(Object2AngleY);
+  // console.log(Object2AngleY);
 
-  if(Object3AngleY > -20) {
+  if(Object3AngleY >= -20) {
     if(e.keyCode==88) Object3AngleY=Object3AngleY-2.5;
 
   }
-  if(Object3AngleY < 0) {
+  if(Object3AngleY <= 0) {
     if(e.keyCode==90) Object3AngleY=Object3AngleY+2.5;
   }
 
@@ -803,15 +804,33 @@ function handlekeydown(e)
  if(e.keyCode==88) Object6AngleY=Object6AngleY-1.5;
  if(e.keyCode==90) Object6AngleY=Object6AngleY+1.5;
 
+  if(Object7AngleY > 0) {
+    if(e.keyCode==88) Object7AngleY=Object7AngleY-3.5;
+  }
+
+  if(Object7AngleY <= 20) {
+    if(e.keyCode==90) Object7AngleY=Object7AngleY+3.5;
+  }
+
+  console.log(Object7AngleY);
+
+  if(Object8AngleY > 0) {
+    if(e.keyCode==88) Object8AngleY=Object8AngleY-2.5;
+
+  }
+  if(Object8AngleY <= 0) {
+    if(e.keyCode==90) Object8AngleY=Object8AngleY+2.5;
+  }
+
  // right leg
  if(e.keyCode==88) Object9AngleX=Object9AngleX-1.5;
  if(e.keyCode==90) Object9AngleX=Object9AngleX+1.5;
 
-  if(Object10AngleX < 12) {
+  if(Object10AngleX <= 12) {
     if(e.keyCode==88) Object10AngleX=Object10AngleX+0.5;
   }
 
-  if(Object10AngleX > 0) {
+  if(Object10AngleX >= 0) {
     if(e.keyCode==90) Object10AngleX=Object10AngleX-0.5;
   }
 
