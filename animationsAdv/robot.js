@@ -291,11 +291,11 @@ var angleY = 0.0;
 var angleX = 0.0;
 var KameraPositionZ = -8.0;
 
-var Object1PositionX = 0.0;
+var Object1PositionX = -0.2;
 var Object1PositionY = 0.0;
 var Object1PositionZ = 0.0;
 
-var Object1AngleZ = 0.0;
+var Object1AngleZ = -25.0;
 var Object1AngleX = 0.0;
 var Object1AngleY = 0.0;
 
@@ -316,7 +316,7 @@ var Object3AngleY = 0.0;
 var Object3AngleZ = 0.0;
 
 
-//added
+//added body
 var Object4PositionX = 0.0;
 var Object4PositionY = 0.0;
 var Object4PositionZ = 0.0;
@@ -325,7 +325,7 @@ var Object4AngleZ = 0.0;
 var Object4AngleX = 0.0;
 var Object4AngleY = 0.0;
 
-//added
+//added head
 var Object5PositionX = -1.0;
 var Object5PositionY = 0.0;
 var Object5PositionZ = 0.0;
@@ -335,11 +335,11 @@ var Object5AngleX = 0.0;
 var Object5AngleY = 0.0;
 
 //added positions
-var Object6PositionX = -2.6;
-var Object6PositionY = 0.0;
+var Object6PositionX = -2.5;
+var Object6PositionY = -0.2;
 var Object6PositionZ = 0.0;
 
-var Object6AngleZ = 0.0;
+var Object6AngleZ = 25.0;
 var Object6AngleX = 0.0;
 var Object6AngleY = 0.0;
 
@@ -486,30 +486,35 @@ function Tick()
   uMMatrix1 = MatrixMul(uMMatrix1,CreateScaleMatrix(Object1Sizedx,Object1Sizedy,Object1Sizedz));
   uMMatrix1 = MatrixMul(uMMatrix1,CreateTranslationMatrix(Object1Sizedx,0.0,0.0)); 
   uMMatrix1 = MatrixMul(uMMatrix1,CreateRotationZMatrix(Object1AngleZ));
+  uMMatrix1 = MatrixMul(uMMatrix1,CreateRotationYMatrix(Object1AngleY));
   uMMatrix1 = MatrixMul(uMMatrix1,CreateTranslationMatrix(Object1PositionX,Object1PositionY,Object1PositionZ));  
   
   uMMatrix2 = MatrixMul(uMMatrix2,CreateScaleMatrix(Object2Sizedx,Object2Sizedy,Object2Sizedz));
   uMMatrix2 = MatrixMul(uMMatrix2,CreateTranslationMatrix(Object2Sizedx,0.0,0.0)); 
   uMMatrix2 = MatrixMul(uMMatrix2,CreateRotationZMatrix(Object2AngleZ));
+  uMMatrix2 = MatrixMul(uMMatrix2,CreateRotationYMatrix(Object2AngleY));
   uMMatrix2 = MatrixMul(uMMatrix2,CreateTranslationMatrix(Object2PositionX,Object2PositionY,Object2PositionZ));
   
   uMMatrix2 = MatrixMul(uMMatrix2,CreateTranslationMatrix(Object1Sizedx,0.0,0.0)); 
   uMMatrix2 = MatrixMul(uMMatrix2,CreateRotationZMatrix(Object1AngleZ));
+  uMMatrix2 = MatrixMul(uMMatrix2,CreateRotationYMatrix(Object1AngleY));
   uMMatrix2 = MatrixMul(uMMatrix2,CreateTranslationMatrix(Object1PositionX,Object1PositionY,Object1PositionZ));
   
   uMMatrix3 = MatrixMul(uMMatrix3,CreateScaleMatrix(Object3Sizedx,Object3Sizedy,Object3Sizedz));
   uMMatrix3 = MatrixMul(uMMatrix3,CreateTranslationMatrix(Object3Sizedx,0.0,0.0)); 
   uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationZMatrix(Object3AngleZ));
-  uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationZMatrix(Object3AngleX));
-  uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationZMatrix(Object3AngleZ));
+  uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationXMatrix(Object3AngleX));
+  uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationYMatrix(Object3AngleY));
   uMMatrix3 = MatrixMul(uMMatrix3,CreateTranslationMatrix(Object3PositionX,Object3PositionY,Object3PositionZ));
   
   uMMatrix3 = MatrixMul(uMMatrix3,CreateTranslationMatrix(Object2Sizedx,0.0,0.0)); 
   uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationZMatrix(Object2AngleZ));
+  uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationYMatrix(Object2AngleY));
   uMMatrix3 = MatrixMul(uMMatrix3,CreateTranslationMatrix(Object2PositionX,Object2PositionY,Object2PositionZ));
   
   uMMatrix3 = MatrixMul(uMMatrix3,CreateTranslationMatrix(Object1Sizedx,0.0,0.0)); 
   uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationZMatrix(Object1AngleZ));
+  uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationYMatrix(Object1AngleY))
   uMMatrix3 = MatrixMul(uMMatrix3,CreateTranslationMatrix(Object1PositionX,Object1PositionY,Object1PositionZ));
   
   uMMatrix0 = MatrixMul(uMMatrix0,CreateScaleMatrix(LightSize,LightSize,LightSize));
@@ -540,28 +545,37 @@ function Tick()
   uMMatrix6 = MatrixMul(uMMatrix6,CreateScaleMatrix(Object6Sizedx,Object6Sizedy,Object6Sizedz));
   uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object6Sizedx,0.0,0.0)); 
   uMMatrix6 = MatrixMul(uMMatrix6,CreateRotationZMatrix(Object6AngleZ));
+  uMMatrix6 = MatrixMul(uMMatrix6,CreateRotationXMatrix(Object6AngleX));
+  uMMatrix6 = MatrixMul(uMMatrix6,CreateRotationYMatrix(Object6AngleY));
   uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object6PositionX,Object6PositionY,Object6PositionZ));  
   
   uMMatrix7 = MatrixMul(uMMatrix7,CreateScaleMatrix(Object7Sizedx,Object7Sizedy,Object7Sizedz));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object7Sizedx,0.0,0.0)); 
   uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationZMatrix(Object7AngleZ));
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationYMatrix(Object7AngleY));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object7PositionX,Object7PositionY,Object7PositionZ));
   
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object6Sizedx,0.0,0.0)); 
   uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationZMatrix(Object6AngleZ));
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationXMatrix(Object6AngleX));
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationYMatrix(Object6AngleY));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object6PositionX,Object6PositionY,Object6PositionZ));
   
   uMMatrix8 = MatrixMul(uMMatrix8,CreateScaleMatrix(Object8Sizedx,Object8Sizedy,Object8Sizedz));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object8Sizedx,0.0,0.0)); 
   uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object8AngleZ));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationYMatrix(Object8AngleY));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object8PositionX,Object8PositionY,Object8PositionZ));
   
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object7Sizedx,0.0,0.0)); 
   uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object7AngleZ));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationXMatrix(Object7AngleX));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object7PositionX,Object7PositionY,Object7PositionZ));
   
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object6Sizedx,0.0,0.0)); 
   uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object6AngleZ));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationYMatrix(Object6AngleY));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationXMatrix(Object6AngleX));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object6PositionX,Object6PositionY,Object6PositionZ));
 
   // left leg
@@ -761,8 +775,33 @@ function handlekeydown(e)
  if(e.keyCode==79) LightPositionZ=LightPositionZ-0.1;
  
  //Z X
- if(e.keyCode==88) Object1AngleZ=Object1AngleZ-1.5;
- if(e.keyCode==90) Object1AngleZ=Object1AngleZ+1.5;
+
+ // left arm
+ if(e.keyCode==88) Object1AngleY=Object1AngleY-1.5;
+ if(e.keyCode==90) Object1AngleY=Object1AngleY+1.5;
+
+  if(Object2AngleY > -20) {
+    if(e.keyCode==88) Object2AngleY=Object2AngleY-3.5;
+  }
+
+  if(Object2AngleY < 0) {
+    if(e.keyCode==90) Object2AngleY=Object2AngleY+3.5;
+  }
+
+  console.log(Object2AngleY);
+
+  if(Object3AngleY > -20) {
+    if(e.keyCode==88) Object3AngleY=Object3AngleY-2.5;
+
+  }
+  if(Object3AngleY < 0) {
+    if(e.keyCode==90) Object3AngleY=Object3AngleY+2.5;
+  }
+
+
+ // right arm
+ if(e.keyCode==88) Object6AngleY=Object6AngleY-1.5;
+ if(e.keyCode==90) Object6AngleY=Object6AngleY+1.5;
 
  // right leg
  if(e.keyCode==88) Object9AngleX=Object9AngleX-1.5;
@@ -776,8 +815,8 @@ function handlekeydown(e)
     if(e.keyCode==90) Object10AngleX=Object10AngleX-0.5;
   }
 
+// for testing purpose
 //  console.log(Object10AngleX);
-
 
  // left leg
  if(e.keyCode==88) Object11AngleX=Object11AngleX+1.5;
@@ -791,16 +830,14 @@ function handlekeydown(e)
     if(e.keyCode==88) Object12AngleX=Object12AngleX-0.5;
   }
 
-console.log(Object10AngleX);
+// for testing purpose
+// console.log(Object10AngleX);
  
  //C V
  if(e.keyCode==67) Object2AngleZ=Object2AngleZ-1.5;
  if(e.keyCode==86) Object2AngleZ=Object2AngleZ+1.5;
  
  //B N
- if(e.keyCode==66) Object3AngleZ=Object3AngleZ-1.5;
- if(e.keyCode==78) Object3AngleZ=Object3AngleZ+1.5;
-
- if(e.keyCode==66) Object3AngleX=Object3AngleX-1.5;
- if(e.keyCode==78) Object3AngleX=Object3AngleX+1.5;
+ if(e.keyCode==66) Object3AngleY=Object3AngleY-1.5;
+ if(e.keyCode==78) Object3AngleY=Object3AngleY+1.5;
 }
