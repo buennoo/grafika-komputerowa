@@ -351,12 +351,16 @@ var Object9PositionY = -3.0;
 var Object9PositionZ = 0.0;
 
 var Object9AngleZ = 0.0;
+var Object9AngleX = 0.0;
+var Object9AngleY = 0.0;
 
 var Object10PositionX = -0.3;
-var Object10PositionY = -1.0;
+var Object10PositionY = -1.2;
 var Object10PositionZ = 0.0;
 
 var Object10AngleZ = 0.0;
+var Object10AngleX = 0.0;
+var Object10AngleY = 0.0;
 
 // added right leg
 var Object11PositionX = -1.9;
@@ -366,7 +370,7 @@ var Object11PositionZ = 0.0;
 var Object11AngleZ = 0.0;
 
 var Object12PositionX = -0.3;
-var Object12PositionY = -1.0;
+var Object12PositionY = -1.2;
 var Object12PositionZ = 0.0;
 
 var Object12AngleZ = 0.0;
@@ -545,16 +549,16 @@ function Tick()
   // left leg
   uMMatrix9 = MatrixMul(uMMatrix9,CreateScaleMatrix(Object9Sizedx,Object9Sizedy,Object9Sizedz));
   uMMatrix9 = MatrixMul(uMMatrix9,CreateTranslationMatrix(Object9Sizedx,0.0,0.0)); 
-  uMMatrix9 = MatrixMul(uMMatrix9,CreateRotationZMatrix(Object9AngleZ));
+  uMMatrix9 = MatrixMul(uMMatrix9,CreateRotationXMatrix(Object9AngleX));
   uMMatrix9 = MatrixMul(uMMatrix9,CreateTranslationMatrix(Object9PositionX,Object9PositionY,Object9PositionZ));  
   
   uMMatrix10 = MatrixMul(uMMatrix10,CreateScaleMatrix(Object10Sizedx,Object10Sizedy,Object10Sizedz));
   uMMatrix10 = MatrixMul(uMMatrix10,CreateTranslationMatrix(Object10Sizedx,0.0,0.0)); 
-  uMMatrix10 = MatrixMul(uMMatrix10,CreateRotationZMatrix(Object10AngleZ));
+  uMMatrix10 = MatrixMul(uMMatrix10,CreateRotationXMatrix(Object10AngleX));
   uMMatrix10 = MatrixMul(uMMatrix10,CreateTranslationMatrix(Object10PositionX,Object10PositionY,Object10PositionZ));
   
   uMMatrix10 = MatrixMul(uMMatrix10,CreateTranslationMatrix(Object9Sizedx,0.0,0.0)); 
-  uMMatrix10 = MatrixMul(uMMatrix10,CreateRotationZMatrix(Object9AngleZ));
+  uMMatrix10 = MatrixMul(uMMatrix10,CreateRotationXMatrix(Object9AngleX));
   uMMatrix10 = MatrixMul(uMMatrix10,CreateTranslationMatrix(Object9PositionX,Object9PositionY,Object9PositionZ));
 
   // right leg
@@ -741,6 +745,15 @@ function handlekeydown(e)
  //Z X
  if(e.keyCode==88) Object1AngleZ=Object1AngleZ-1.5;
  if(e.keyCode==90) Object1AngleZ=Object1AngleZ+1.5;
+
+ // right leg
+ if(e.keyCode==88) Object9AngleX=Object9AngleX-1.5;
+ if(e.keyCode==90) Object9AngleX=Object9AngleX+1.5;
+
+ // left leg
+//  if(e.keyCode==88) Object11AngleZ=Object11AngleZ-1.5;
+//  if(e.keyCode==90) Object11AngleZ=Object11AngleZ+1.5;
+
  
  //C V
  if(e.keyCode==67) Object2AngleZ=Object2AngleZ-1.5;
