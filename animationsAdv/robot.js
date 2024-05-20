@@ -548,6 +548,7 @@ function Tick()
   
   uMMatrix7 = MatrixMul(uMMatrix7,CreateScaleMatrix(Object7Sizedx,Object7Sizedy,Object7Sizedz));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object7Sizedx,0.0,0.0)); 
+  uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationZMatrix(Object7AngleZ));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationYMatrix(Object7AngleY));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object7PositionX,Object7PositionY,Object7PositionZ));
   
@@ -564,7 +565,7 @@ function Tick()
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object8PositionX,Object8PositionY,Object8PositionZ));
   
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object7Sizedx,0.0,0.0)); 
-  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationXMatrix(Object7AngleX));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object7AngleZ));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationYMatrix(Object7AngleY));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object7PositionX,Object7PositionY,Object7PositionZ));
   
@@ -863,10 +864,22 @@ function handlekeydown(e)
 // console.log(Object10AngleX);
  
  //C V
- if(e.keyCode==67) Object2AngleZ=Object2AngleZ-1.5;
- if(e.keyCode==86) Object2AngleZ=Object2AngleZ+1.5;
+ if(e.keyCode==67) {
+  Object2AngleZ=Object2AngleZ-1.5;
+  Object7AngleZ=Object7AngleZ-1.5;
+ } 
+ if(e.keyCode==86) {
+  Object2AngleZ=Object2AngleZ+1.5;
+  Object7AngleZ=Object7AngleZ+1.5;
+ }
  
  //B N
- if(e.keyCode==66) Object3AngleY=Object3AngleY-1.5;
- if(e.keyCode==78) Object3AngleY=Object3AngleY+1.5;
+ if(e.keyCode==66) {
+  Object3AngleY=Object3AngleY-1.5;
+  Object8AngleY=Object8AngleY-1.5;
+ }
+ if(e.keyCode==78) {
+  Object3AngleY=Object3AngleY+1.5;
+  Object8AngleY=Object8AngleY+1.5;
+ }
 }
