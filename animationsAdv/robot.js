@@ -307,7 +307,10 @@ var Object3PositionX = 0.6;
 var Object3PositionY = 0.0;
 var Object3PositionZ = 0.0;
 
+var Object3AngleX = 0.0;
+var Object3AngleY = 0.0;
 var Object3AngleZ = 0.0;
+
 
 //added
 var Object4PositionX = 0.0;
@@ -423,6 +426,8 @@ function Tick()
   uMMatrix3 = MatrixMul(uMMatrix3,CreateScaleMatrix(Object3Sizedx,Object3Sizedy,Object3Sizedz));
   uMMatrix3 = MatrixMul(uMMatrix3,CreateTranslationMatrix(Object3Sizedx,0.0,0.0)); 
   uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationZMatrix(Object3AngleZ));
+  uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationZMatrix(Object3AngleX));
+  uMMatrix3 = MatrixMul(uMMatrix3,CreateRotationZMatrix(Object3AngleZ));
   uMMatrix3 = MatrixMul(uMMatrix3,CreateTranslationMatrix(Object3PositionX,Object3PositionY,Object3PositionZ));
   
   uMMatrix3 = MatrixMul(uMMatrix3,CreateTranslationMatrix(Object2Sizedx,0.0,0.0)); 
@@ -451,6 +456,13 @@ function Tick()
   uMMatrix5 = MatrixMul(uMMatrix5,CreateTranslationMatrix(Object5PositionX,Object5PositionY,Object5PositionZ));
 
   //added - second arm
+
+  // oddalenie
+  uVMatrix = MatrixMul(uVMatrix,CreateRotationXMatrix(angleX));
+  uVMatrix = MatrixMul(uVMatrix,CreateRotationYMatrix(angleY));
+  uVMatrix = MatrixMul(uVMatrix,CreateRotationZMatrix(angleZ));
+  uVMatrix = MatrixMul(uVMatrix,CreateTranslationMatrix(0,0,KameraPositionZ));
+
   uMMatrix6 = MatrixMul(uMMatrix6,CreateScaleMatrix(Object6Sizedx,Object6Sizedy,Object6Sizedz));
   uMMatrix6 = MatrixMul(uMMatrix6,CreateTranslationMatrix(Object6Sizedx,0.0,0.0)); 
   uMMatrix6 = MatrixMul(uMMatrix6,CreateRotationZMatrix(Object6AngleZ));
@@ -486,7 +498,7 @@ function Tick()
   gl.useProgram(shaderProgram)   //Użycie przygotowanego programu shaderowego
   
   gl.enable(gl.DEPTH_TEST);           // Włączenie testu głębi - obiekty bliższe mają przykrywać obiekty dalsze
-  gl.depthFunc(gl.LEQUAL);            // 
+  gl.depthFunc(gl.LEQUAL);            //
   
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uPMatrix"), false, new Float32Array(uPMatrix)); //Wgranie macierzy kamery do pamięci karty graficznej
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uVMatrix"), false, new Float32Array(uVMatrix));
@@ -538,10 +550,8 @@ function Tick()
   //added - BODY
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix5));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix5)));
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,0.0,1.0);
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,1.0,1.0);
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
-
-
 
 
   //added- second arm
@@ -566,13 +576,13 @@ function Tick()
   gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.5,0.0,0.0); 
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
 
-  //Drugi Obiekt
+  //Drugi Obiekt - second arm
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix7));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix7)));
   gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,1.0,0.0);
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
   
-  //Trzeci Obiekt
+  //Trzeci Obiekt - second arm
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix8));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix8)));
   gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,0.0,1.0);
@@ -601,14 +611,17 @@ function handlekeydown(e)
  if(e.keyCode==79) LightPositionZ=LightPositionZ-0.1;
  
  //Z X
- if(e.keyCode==88) Object1AngleZ=Object1AngleZ-0.1;
- if(e.keyCode==90) Object1AngleZ=Object1AngleZ+0.1;
+ if(e.keyCode==88) Object1AngleZ=Object1AngleZ-1.5;
+ if(e.keyCode==90) Object1AngleZ=Object1AngleZ+1.5;
  
  //C V
- if(e.keyCode==67) Object2AngleZ=Object2AngleZ-0.1;
- if(e.keyCode==86) Object2AngleZ=Object2AngleZ+0.1;
+ if(e.keyCode==67) Object2AngleZ=Object2AngleZ-1.5;
+ if(e.keyCode==86) Object2AngleZ=Object2AngleZ+1.5;
  
  //B N
- if(e.keyCode==66) Object3AngleZ=Object3AngleZ-0.1;
- if(e.keyCode==78) Object3AngleZ=Object3AngleZ+0.1;
+ if(e.keyCode==66) Object3AngleZ=Object3AngleZ-1.5;
+ if(e.keyCode==78) Object3AngleZ=Object3AngleZ+1.5;
+
+ if(e.keyCode==66) Object3AngleX=Object3AngleX-1.5;
+ if(e.keyCode==78) Object3AngleX=Object3AngleX+1.5;
 }
