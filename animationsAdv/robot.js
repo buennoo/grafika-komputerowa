@@ -335,15 +335,15 @@ var Object5AngleX = 0.0;
 var Object5AngleY = 0.0;
 
 //added positions
-var Object6PositionX = -2.5;
-var Object6PositionY = -0.2;
+var Object6PositionX = -1.8;
+var Object6PositionY = 0.0;
 var Object6PositionZ = 0.0;
 
-var Object6AngleZ = 25.0;
+var Object6AngleZ = 205.0;
 var Object6AngleX = 0.0;
 var Object6AngleY = 0.0;
 
-var Object7PositionX = -1.5;
+var Object7PositionX = 0.3;
 var Object7PositionY = 0.0;
 var Object7PositionZ = 0.0;
 
@@ -351,7 +351,7 @@ var Object7AngleZ = 0.0;
 var Object7AngleX = 0.0;
 var Object7AngleY = 0.0;
 
-var Object8PositionX = -1.4;
+var Object8PositionX = 0.6;
 var Object8PositionY = 0.0;
 var Object8PositionZ = 0.0;
 
@@ -548,7 +548,6 @@ function Tick()
   
   uMMatrix7 = MatrixMul(uMMatrix7,CreateScaleMatrix(Object7Sizedx,Object7Sizedy,Object7Sizedz));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object7Sizedx,0.0,0.0)); 
-  uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationZMatrix(Object7AngleZ));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateRotationYMatrix(Object7AngleY));
   uMMatrix7 = MatrixMul(uMMatrix7,CreateTranslationMatrix(Object7PositionX,Object7PositionY,Object7PositionZ));
   
@@ -559,19 +558,19 @@ function Tick()
   
   uMMatrix8 = MatrixMul(uMMatrix8,CreateScaleMatrix(Object8Sizedx,Object8Sizedy,Object8Sizedz));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object8Sizedx,0.0,0.0)); 
-  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object8AngleZ));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationYMatrix(Object8AngleY));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationXMatrix(Object8AngleX));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object8AngleZ));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object8PositionX,Object8PositionY,Object8PositionZ));
   
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object7Sizedx,0.0,0.0)); 
-  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object7AngleZ));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationXMatrix(Object7AngleX));
+  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationYMatrix(Object7AngleY));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object7PositionX,Object7PositionY,Object7PositionZ));
   
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object6Sizedx,0.0,0.0)); 
   uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationZMatrix(Object6AngleZ));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationYMatrix(Object6AngleY));
-  uMMatrix8 = MatrixMul(uMMatrix8,CreateRotationXMatrix(Object6AngleX));
   uMMatrix8 = MatrixMul(uMMatrix8,CreateTranslationMatrix(Object6PositionX,Object6PositionY,Object6PositionZ));
 
   // left leg
@@ -692,19 +691,19 @@ function Tick()
   gl.uniform3f(gl.getUniformLocation(shaderProgram, "uLightPosition"),LightPositionX,LightPositionY,LightPositionZ);
   
 
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.5,0.0,0.0); 
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),1.0,0.8,1.0); 
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
 
   //Drugi Obiekt - second arm
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix7));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix7)));
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,1.0,0.0);
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.5,0.8,0.0);
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
   
   //Trzeci Obiekt - second arm
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uMMatrix"), false, new Float32Array(uMMatrix8));
   gl.uniformMatrix4fv(gl.getUniformLocation(shaderProgram, "uInvMMatrix"), false, new Float32Array(MatrixTransposeInverse(uMMatrix8)));
-  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),0.0,0.0,1.0);
+  gl.uniform3f(gl.getUniformLocation(shaderProgram, "uColor"),1.0,1.0,0.3);
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numItems*vertexPositionBuffer.itemSize); //Faktyczne wywołanie rendrowania
 
   // left leg
@@ -778,14 +777,20 @@ function handlekeydown(e)
  //Z X
 
  // left arm
- if(e.keyCode==88) Object1AngleY=Object1AngleY-1.5;
- if(e.keyCode==90) Object1AngleY=Object1AngleY+1.5;
+ if(e.keyCode==88) {
+  Object1AngleY=Object1AngleY-2.5;
+  Object1AngleZ = Object1AngleZ - 0.4;
+ } 
+ if(e.keyCode==90) {
+  Object1AngleY=Object1AngleY+2.5;
+  Object1AngleZ = Object1AngleZ + 0.4;
+ } 
 
   if(Object2AngleY >= -20) {
     if(e.keyCode==88) Object2AngleY=Object2AngleY-3.5;
   }
 
-  if(Object2AngleY <= 0) {
+  if(Object2AngleY < 0) {
     if(e.keyCode==90) Object2AngleY=Object2AngleY+3.5;
   }
 
@@ -795,33 +800,38 @@ function handlekeydown(e)
     if(e.keyCode==88) Object3AngleY=Object3AngleY-2.5;
 
   }
-  if(Object3AngleY <= 0) {
+  if(Object3AngleY < 15) {
     if(e.keyCode==90) Object3AngleY=Object3AngleY+2.5;
   }
 
 
  // right arm
- if(e.keyCode==88) Object6AngleY=Object6AngleY-1.5;
- if(e.keyCode==90) Object6AngleY=Object6AngleY+1.5;
+ if(e.keyCode==88) {
+  Object6AngleY=Object6AngleY-2.5;
+  Object6AngleZ = Object6AngleZ - 0.4;
+ }
+ if(e.keyCode==90) {
+  Object6AngleY=Object6AngleY+2.5;
+  Object6AngleZ = Object6AngleZ + 0.4;
+ }
 
-  if(Object7AngleY > 0) {
+  if(Object7AngleY >= -20) {
     if(e.keyCode==88) Object7AngleY=Object7AngleY-3.5;
   }
 
-  if(Object7AngleY <= 20) {
+  if(Object7AngleY < 0) {
     if(e.keyCode==90) Object7AngleY=Object7AngleY+3.5;
   }
 
-  console.log(Object7AngleY);
-
-  if(Object8AngleY > 0) {
+  if(Object8AngleY >= -20) {
     if(e.keyCode==88) Object8AngleY=Object8AngleY-2.5;
 
   }
-  if(Object8AngleY <= 0) {
+  if(Object8AngleY < 15) {
     if(e.keyCode==90) Object8AngleY=Object8AngleY+2.5;
   }
-
+  console.log(Object8AngleY);
+  
  // right leg
  if(e.keyCode==88) Object9AngleX=Object9AngleX-1.5;
  if(e.keyCode==90) Object9AngleX=Object9AngleX+1.5;
