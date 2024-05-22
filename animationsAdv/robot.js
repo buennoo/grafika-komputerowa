@@ -779,13 +779,19 @@ function handlekeydown(e)
 
  // left arm
  if(e.keyCode==88) {
-  Object1AngleY=Object1AngleY-2.5;
-  Object1AngleZ = Object1AngleZ - 0.4;
+  if(Object1AngleY >= -40){
+    Object1AngleY=Object1AngleY-1.5;
+    Object1AngleZ = Object1AngleZ - 0.4;
+  }
+
  } 
  if(e.keyCode==90) {
-  Object1AngleY=Object1AngleY+2.5;
-  Object1AngleZ = Object1AngleZ + 0.4;
+  if(Object1AngleY <= 40){
+    Object1AngleY=Object1AngleY+1.5;
+    Object1AngleZ = Object1AngleZ + 0.4;
+  }
  } 
+
 
   if(Object2AngleY >= -20) {
     if(e.keyCode==88) Object2AngleY=Object2AngleY-3.5;
@@ -795,6 +801,7 @@ function handlekeydown(e)
     if(e.keyCode==90) Object2AngleY=Object2AngleY+3.5;
   }
 
+ 
   // console.log(Object2AngleY);
 
   if(Object3AngleY >= -20) {
@@ -808,13 +815,20 @@ function handlekeydown(e)
 
  // right arm
  if(e.keyCode==88) {
-  Object6AngleY=Object6AngleY-2.5;
-  Object6AngleZ = Object6AngleZ - 0.4;
+  if(Object6AngleY >= -40){
+    Object6AngleY=Object6AngleY-1.5;
+    Object6AngleZ = Object6AngleZ - 0.4;
+  }
  }
  if(e.keyCode==90) {
-  Object6AngleY=Object6AngleY+2.5;
-  Object6AngleZ = Object6AngleZ + 0.4;
+  if(Object6AngleY <= 40){ 
+    Object6AngleY=Object6AngleY+1.5;
+    Object6AngleZ = Object6AngleZ + 0.4;
+  }
  }
+
+ console.log("Z: ",Object6AngleY);
+ console.log("Z: ",Object6AngleY);
 
   if(Object7AngleY >= -20) {
     if(e.keyCode==88) Object7AngleY=Object7AngleY-3.5;
@@ -834,8 +848,17 @@ function handlekeydown(e)
   console.log(Object8AngleY);
   
  // right leg
- if(e.keyCode==88) Object9AngleX=Object9AngleX-1.5;
- if(e.keyCode==90) Object9AngleX=Object9AngleX+1.5;
+ if(e.keyCode==88) {
+  if(Object9AngleX >= -40) {
+    Object9AngleX=Object9AngleX-1.5;
+  }
+ }
+
+ if(e.keyCode==90) {
+  if(Object9AngleX <= 40) {
+    Object9AngleX=Object9AngleX+1.5;
+  }
+ } 
 
   if(Object10AngleX <= 12) {
     if(e.keyCode==88) Object10AngleX=Object10AngleX+0.5;
@@ -849,8 +872,16 @@ function handlekeydown(e)
 //  console.log(Object10AngleX);
 
  // left leg
- if(e.keyCode==88) Object11AngleX=Object11AngleX+1.5;
- if(e.keyCode==90) Object11AngleX=Object11AngleX-1.5;
+ if(e.keyCode==88) {
+  if(Object11AngleX <= 40) {
+    Object11AngleX=Object11AngleX+1.5;
+  }
+ } 
+ if(e.keyCode==90) {
+  if(Object11AngleX >= -40) {
+    Object11AngleX=Object11AngleX-1.5;
+  }
+ } 
 
   if(Object12AngleX < 12) {
     if(e.keyCode==90) Object12AngleX=Object12AngleX+0.5;
