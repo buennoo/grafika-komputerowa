@@ -295,7 +295,7 @@ var Object1PositionX = -0.2;
 var Object1PositionY = 0.0;
 var Object1PositionZ = 0.0;
 
-var Object1AngleZ = -25.0;
+var Object1AngleZ = -60.0;
 var Object1AngleX = 0.0;
 var Object1AngleY = 0.0;
 
@@ -339,7 +339,7 @@ var Object6PositionX = -1.8;
 var Object6PositionY = 0.0;
 var Object6PositionZ = 0.0;
 
-var Object6AngleZ = 205.0;
+var Object6AngleZ = 240.0;
 var Object6AngleX = 0.0;
 var Object6AngleY = 0.0;
 
@@ -777,11 +777,20 @@ function handlekeydown(e)
  
  //Z X
 
+
+
  // left arm
  if(e.keyCode==88) {
   if(Object1AngleY >= -40){
     Object1AngleY=Object1AngleY-1.5;
     Object1AngleZ = Object1AngleZ - 0.4;
+
+    Object1PositionZ += 0.05;
+    Object4PositionZ += 0.05;
+    Object5PositionZ += 0.05;
+    Object6PositionZ += 0.05;
+    Object9PositionZ += 0.05;
+    Object11PositionZ += 0.05;
   }
 
  } 
@@ -789,6 +798,13 @@ function handlekeydown(e)
   if(Object1AngleY <= 40){
     Object1AngleY=Object1AngleY+1.5;
     Object1AngleZ = Object1AngleZ + 0.4;
+
+    Object1PositionZ += 0.05;
+    Object4PositionZ += 0.05;
+    Object5PositionZ += 0.05;
+    Object6PositionZ += 0.05;
+    Object9PositionZ += 0.05;
+    Object11PositionZ += 0.05;
   }
  } 
 
@@ -818,12 +834,26 @@ function handlekeydown(e)
   if(Object6AngleY >= -40){
     Object6AngleY=Object6AngleY-1.5;
     Object6AngleZ = Object6AngleZ - 0.4;
+
+    Object1PositionZ += 0.05;
+    Object4PositionZ += 0.05;
+    Object5PositionZ += 0.05;
+    Object6PositionZ += 0.05;
+    Object9PositionZ += 0.05;
+    Object11PositionZ += 0.05;
   }
  }
  if(e.keyCode==90) {
   if(Object6AngleY <= 40){ 
     Object6AngleY=Object6AngleY+1.5;
     Object6AngleZ = Object6AngleZ + 0.4;
+
+    Object1PositionZ += 0.05;
+    Object4PositionZ += 0.05;
+    Object5PositionZ += 0.05;
+    Object6PositionZ += 0.05;
+    Object9PositionZ += 0.05;
+    Object11PositionZ += 0.05;
   }
  }
 
