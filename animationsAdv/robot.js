@@ -289,7 +289,7 @@ function startGL()
 var angleZ = 0.0;
 var angleY = 0.0;
 var angleX = 0.0;
-var KameraPositionZ = -8.0;
+var KameraPositionZ = -20.0;
 
 var Object1PositionX = -0.2;
 var Object1PositionY = 0.0;
@@ -776,106 +776,111 @@ function handlekeydown(e)
  if(e.keyCode==79) LightPositionZ=LightPositionZ-0.1;
  
  //Z X
-
-
-
  // left arm
  if(e.keyCode==88) {
   if(Object1AngleY >= -40){
     Object1AngleY=Object1AngleY-1.5;
-    Object1AngleZ = Object1AngleZ - 0.4;
+    Object1AngleZ = Object1AngleZ - 0.2;
 
-    Object1PositionZ += 0.05;
-    Object4PositionZ += 0.05;
-    Object5PositionZ += 0.05;
-    Object6PositionZ += 0.05;
-    Object9PositionZ += 0.05;
-    Object11PositionZ += 0.05;
+    Object1PositionZ += 0.03;
+    Object4PositionZ += 0.03;
+    Object5PositionZ += 0.03;
+    Object6PositionZ += 0.03;
+    Object9PositionZ += 0.03;
+    Object11PositionZ += 0.03;
+
+    LightPositionZ += 0.05;
   }
 
  } 
  if(e.keyCode==90) {
   if(Object1AngleY <= 40){
     Object1AngleY=Object1AngleY+1.5;
-    Object1AngleZ = Object1AngleZ + 0.4;
+    Object1AngleZ = Object1AngleZ + 0.2;
 
-    Object1PositionZ += 0.05;
-    Object4PositionZ += 0.05;
-    Object5PositionZ += 0.05;
-    Object6PositionZ += 0.05;
-    Object9PositionZ += 0.05;
-    Object11PositionZ += 0.05;
+    Object1PositionZ += 0.03;
+    Object4PositionZ += 0.03;
+    Object5PositionZ += 0.03;
+    Object6PositionZ += 0.03;
+    Object9PositionZ += 0.03;
+    Object11PositionZ += 0.03;
+
+    LightPositionZ += 0.05;
   }
  } 
 
 
-  if(Object2AngleY >= -20) {
-    if(e.keyCode==88) Object2AngleY=Object2AngleY-3.5;
-  }
+  // if(Object2AngleY >= -20) {
+  //   if(e.keyCode==88) Object2AngleY=Object2AngleY-0.5;
+  // }
 
   if(Object2AngleY < 0) {
-    if(e.keyCode==90) Object2AngleY=Object2AngleY+3.5;
+    if(e.keyCode==90) Object2AngleY=Object2AngleY+0.5;
   }
 
  
   // console.log(Object2AngleY);
 
-  if(Object3AngleY >= -20) {
-    if(e.keyCode==88) Object3AngleY=Object3AngleY-2.5;
+  // if(Object3AngleY >= -20) {
+  //   if(e.keyCode==88) Object3AngleY=Object3AngleY-0.5;
 
-  }
-  if(Object3AngleY < 15) {
-    if(e.keyCode==90) Object3AngleY=Object3AngleY+2.5;
-  }
+  // }
+  // if(Object3AngleY < 15) {
+  //   if(e.keyCode==90) Object3AngleY=Object3AngleY+2.5;
+  // }
 
 
  // right arm
  if(e.keyCode==88) {
   if(Object6AngleY >= -40){
     Object6AngleY=Object6AngleY-1.5;
-    Object6AngleZ = Object6AngleZ - 0.4;
+    Object6AngleZ = Object6AngleZ - 0.2;
 
-    Object1PositionZ += 0.05;
-    Object4PositionZ += 0.05;
-    Object5PositionZ += 0.05;
-    Object6PositionZ += 0.05;
-    Object9PositionZ += 0.05;
-    Object11PositionZ += 0.05;
+    Object1PositionZ += 0.03;
+    Object4PositionZ += 0.03;
+    Object5PositionZ += 0.03;
+    Object6PositionZ += 0.03;
+    Object9PositionZ += 0.03;
+    Object11PositionZ += 0.03;
+
+    LightPositionZ += 0.05;
   }
  }
  if(e.keyCode==90) {
   if(Object6AngleY <= 40){ 
     Object6AngleY=Object6AngleY+1.5;
-    Object6AngleZ = Object6AngleZ + 0.4;
+    Object6AngleZ = Object6AngleZ + 0.2;
 
-    Object1PositionZ += 0.05;
-    Object4PositionZ += 0.05;
-    Object5PositionZ += 0.05;
-    Object6PositionZ += 0.05;
-    Object9PositionZ += 0.05;
-    Object11PositionZ += 0.05;
+    Object1PositionZ += 0.03;
+    Object4PositionZ += 0.03;
+    Object5PositionZ += 0.03;
+    Object6PositionZ += 0.03;
+    Object9PositionZ += 0.03;
+    Object11PositionZ += 0.03;
+
+    LightPositionZ += 0.05;
   }
  }
 
  console.log("Z: ",Object6AngleY);
  console.log("Z: ",Object6AngleY);
 
-  if(Object7AngleY >= -20) {
-    if(e.keyCode==88) Object7AngleY=Object7AngleY-3.5;
-  }
+  // if(Object7AngleY >= -20) {
+  //   if(e.keyCode==88) Object7AngleY=Object7AngleY-0.5;
+  // }
 
   if(Object7AngleY < 0) {
-    if(e.keyCode==90) Object7AngleY=Object7AngleY+3.5;
+    if(e.keyCode==90) Object7AngleY=Object7AngleY+0.5;
   }
 
-  if(Object8AngleY >= -20) {
-    if(e.keyCode==88) Object8AngleY=Object8AngleY-2.5;
+  // if(Object8AngleY >= -20) {
+  //   if(e.keyCode==88) Object8AngleY=Object8AngleY-0.5;
 
-  }
-  if(Object8AngleY < 15) {
-    if(e.keyCode==90) Object8AngleY=Object8AngleY+2.5;
-  }
-  console.log(Object8AngleY);
+  // }
+  // if(Object8AngleY < 15) {
+  //   if(e.keyCode==90) Object8AngleY=Object8AngleY+2.5;
+  // }
+  // console.log(Object8AngleY);
   
  // right leg
  if(e.keyCode==88) {
